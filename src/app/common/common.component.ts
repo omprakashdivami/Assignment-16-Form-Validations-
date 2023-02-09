@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CommonComponent implements OnInit {
   items: any[] = [
+    // validation for Common Component
     { id: 1, name: 'number', regEx: '^[0-9]+$'},
     { id: 2, name: 'string' , regEx:'^[A-Za-z]+$'},
     { id: 3, name: 'boolean', regEx:'^(?:tru|fals)e$' },
@@ -15,6 +16,7 @@ export class CommonComponent implements OnInit {
     { id: 5, name: 'binary', regEx:'^[0*1*]*[1*0*]*' },
   ];
   selected: unknown = 1;
+  
   dropDownComponent = new FormGroup({
     selectedType : new FormControl(this.items[0].name.value,[Validators.required]),
     inputname: new FormControl('',[Validators.required])
@@ -24,6 +26,7 @@ export class CommonComponent implements OnInit {
   
   ngOnInit() {
   }
+  
  
   selectOption(reg:any)  {
     console.log(this.items[reg.target.value-1].regEx)
@@ -52,7 +55,7 @@ export class CommonComponent implements OnInit {
     //   this.dropDownComponent.controls['inputname'].setValidators(Validators.pattern(this.items[reg.target.value-1].regEx))
     // }
     
-    
+     // Iterating through items Array 
     for(let i=1; i<=this.items.length;i++){
       if(this.items[reg.target.value].id == this.items[i].id){
         console.log(this.items[reg.target.value].id )
@@ -62,7 +65,6 @@ export class CommonComponent implements OnInit {
       
     }
 
-    // return this.items[reg.target.value].regEx
   }
   @Output() childToParrent = new EventEmitter<string>()
   val:any = this.inputname?.value;

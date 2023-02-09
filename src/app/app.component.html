@@ -4,8 +4,9 @@
 <form  (ngSubmit)="show()" [formGroup]="register">
   <fieldset>
   <legend>Registration Form</legend>
-  
+  <!-- First Name -->
   <div class="section">
+
   
   <label for="First Name" >First Name: </label>
   <div class="fieldAndAlert">
@@ -17,7 +18,7 @@
   
 </div>
 </div>
-
+<!-- Last Name -->
 <div class="section">
   
   <label for="Last Name" >Last Name: </label>
@@ -30,7 +31,7 @@
   
 </div>
 </div>
-
+<!-- Age -->
 <div class="section">
   
   <label for="Age" >Age: </label>
@@ -43,20 +44,20 @@
   
 </div>
 </div>
-
+<!-- Phone Number -->
 <div class="section">
   
   <label for="Phone Number" >Phone Number: </label>
   <div class="fieldAndAlert">
-  <input type="number" formControlName="mobileNumber" placeholder="Enter Phone Number" class="inputField"  >
+  <input type="text" formControlName="mobileNumber" placeholder="Enter Phone Number" class="inputField"  >
 
   <div *ngIf="mobileNumber && mobileNumber.touched && mobileNumber.errors?.['required']" class="warning">*Required</div>
  
-  <div *ngIf="mobileNumber && mobileNumber.invalid && mobileNumber.touched && mobileNumber.errors?.['max']" class="warning">*should be a 10 digit number </div>
+  <div *ngIf="mobileNumber && mobileNumber.invalid && mobileNumber.touched " class="warning">*should be a 10 digit number </div>
   
 </div>
 </div>
-
+<!-- Email -->
 
 <div class="section">
   
@@ -67,7 +68,7 @@
   <div *ngIf="email && email.touched && email.invalid " class="warning">*Enter a valid Mail</div>
 </div>
 </div>
-
+<!-- User name -->
 <div class="section">
   
   <label for="User Name" >User Name:</label>
@@ -78,7 +79,7 @@
   <div *ngIf="userName && userName.touched && userName.errors?.['pattern']" class="warning">*Enter a valid User Name</div>
 </div>
 </div>
-
+<!-- Additional INFO -->
 <div class="section">
   
   <label for="User Name" >Additional Info:</label>
@@ -87,6 +88,7 @@
 
 </div>
 </div>
+<!-- Common Component -->
 <app-common (childToParrent)="val($event)"></app-common>
 <div>Addional Info: {{info}}</div>
 <div >Addional Info Value:{{childtoParent}}</div>
@@ -105,3 +107,4 @@
 </form>
 </div>
 </div>
+<router-outlet></router-outlet>

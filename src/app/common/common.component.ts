@@ -26,7 +26,7 @@ export class CommonComponent implements OnInit {
   
   ngOnInit() {
   }
-  
+  typesArray=[]
  
   selectOption(reg:any)  {
     console.log(this.items[reg.target.value-1].regEx)
@@ -58,7 +58,7 @@ export class CommonComponent implements OnInit {
      // Iterating through items Array 
     for(let i=1; i<=this.items.length;i++){
       if(this.items[reg.target.value].id == this.items[i].id){
-        console.log(this.items[reg.target.value].id )
+        // console.log(this.items[reg.target.value].id )
         this.dropDownComponent.controls['inputname'].setValidators(Validators.pattern(this.items[reg.target.value-1].regEx))
         // console.log(reg.target.value-1)
       }
@@ -75,9 +75,7 @@ export class CommonComponent implements OnInit {
       this.childToParrent.emit(event.target.value); 
     }
     else{this.childToParrent.emit('');}
-    // this.childToParrent.emit(this.val); 
-
-    
+    // this.childToParrent.emit(this.val);
   }
 get selectedType(){return this.dropDownComponent.get('selectedType')}
 get inputname(){return this.dropDownComponent.get('inputname')}

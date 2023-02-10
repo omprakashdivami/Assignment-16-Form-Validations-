@@ -13,7 +13,6 @@ AdditionalValue:string='';
   constructor(private router: Router, private route:ActivatedRoute){
     this.data = this.router.getCurrentNavigation()?.extras.state?.['dataToChild'];
     this.AdditionalValue = this.router.getCurrentNavigation()?.extras.state?.['AdditionalValue'];
-    console.log(this.data,this.router.getCurrentNavigation());
   }
 
 }

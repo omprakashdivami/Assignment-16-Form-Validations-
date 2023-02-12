@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-common',
   templateUrl: './common.component.html',
@@ -16,20 +16,29 @@ export class CommonComponent implements OnInit {
     { id: 5, name: 'binary', regEx:'^[0*1*]*[1*0*]*' },
   ];
   selected: unknown = 1;
+  labelDataName:string="";
+  labelData:string="";
   
   dropDownComponent = new FormGroup({
     selectedType : new FormControl(this.items[0].name.value,[Validators.required]),
-    inputname: new FormControl('',[Validators.required])
+    inputname: new FormControl('',[Validators.required]),
+    additionalDataLabel : new FormControl('',[Validators.required])
   })
-  constructor() {
+  constructor(private http:HttpClient) {
+
   }
+  getLabelName()
+     {
+      this.labelDataName=this.dropDownComponent.value.additionalDataLabel as string;
+     }
   
   ngOnInit() {
   }
   typesArray=[]
  
   selectOption(reg:any)  {
-    console.log(this.items[reg.target.value-1].regEx)
+    console.log(this.items[reg.target.value-1].regEx);
+    
     //getted from event
     // console.log(regEX.target.value);
     // console.log(this.items[reg.target.value].regEx)
@@ -38,7 +47,7 @@ export class CommonComponent implements OnInit {
     // if(this.items[reg.target.value].id === 2)
     // {
     //   console.log("kfh")
-    //   this.dropDownComponent.controls['inputname'].setValidators(Validators.pattern(this.items[reg.target.value-1].regEx))
+      // this.dropDownComponent.controls['inputname'].setValidators(Validators.pattern(this.items[reg.target.value-1].regEx))
     // }
     // else if(this.items[reg.target.value].id === 3)
     // {
@@ -56,6 +65,8 @@ export class CommonComponent implements OnInit {
     // }
     
      // Iterating through items Array 
+
+     
     for(let i=1; i<=this.items.length;i++){
       if(this.items[reg.target.value].id == this.items[i].id){
         // console.log(this.items[reg.target.value].id )
@@ -64,7 +75,6 @@ export class CommonComponent implements OnInit {
       }
       
     }
-
   }
   @Output() childToParrent = new EventEmitter<string>()
   val:any = this.inputname?.value;
@@ -73,6 +83,7 @@ export class CommonComponent implements OnInit {
     // console.log(this.val)
     if(this.inputname?.['status'] === 'VALID'){
       this.childToParrent.emit(event.target.value); 
+      this.labelData=event.target.value;
     }
     else{this.childToParrent.emit('');}
     // this.childToParrent.emit(this.val);

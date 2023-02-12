@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import {FormControl,FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { UsersDataService } from '../usersdata.service'; 
 @Component({
   selector: 'app-form-component',
   templateUrl: './form-component.component.html',
   styleUrls: ['./form-component.component.scss']
 })
 export class FormComponentComponent {
-  title = 'REgistrationform';
+  // constructor( ){}
+  constructor(private router: Router , private usersData:UsersDataService){}
+  title = 'Registrationform';
   info:any=''
   dataToChild:any;
   childtoParent:string=''
@@ -23,7 +25,7 @@ export class FormComponentComponent {
       additionalInfo: new FormControl("",Validators.required )
     })
 
- 
+
 
 // Calling the formControllers
   get firstName(){return this.register.get('firstName');}
@@ -40,7 +42,7 @@ export class FormComponentComponent {
     console.log(event)
   }
 
-  constructor(private router: Router){}
+  
 
   show(){ //on clicking the submit button this button will be triggered
     // console.log(this.formData);

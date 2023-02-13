@@ -8,11 +8,12 @@ import { FormComponentComponent } from './form-component/form-component.componen
 })
 export class UsersDataService {
   dataUrl:string;
+  formGroupData:any[]=[];
 
   constructor(private http:HttpClient) {
     this.dataUrl='http://localhost:3000/usersdata'
    }
-   addUser(user:FormComponentComponent ):Observable<FormComponentComponent>{
+   addUser(user:object):Observable<FormComponentComponent>{
     return this.http.post<FormComponentComponent>(this.dataUrl,user)
 
    }
@@ -20,5 +21,9 @@ export class UsersDataService {
     return this.http.get<FormComponentComponent[]>(this.dataUrl)
 
    }
+   getformGroupData(data:any){
+      this.formGroupData.push(data)
+   }
+   
 
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { UsersDataService } from '../usersdata.service';
 @Component({
   selector: 'app-common',
   templateUrl: './common.component.html',
@@ -24,7 +25,7 @@ export class CommonComponent implements OnInit {
     inputname: new FormControl('',[Validators.required]),
     additionalDataLabel : new FormControl('',[Validators.required])
   })
-  constructor(private http:HttpClient) {
+  constructor(private usersdata:UsersDataService) {
 
   }
   getLabelName()
@@ -82,11 +83,13 @@ export class CommonComponent implements OnInit {
     // console.log(this.inputname?.['status'])
     // console.log(this.val)
     if(this.inputname?.['status'] === 'VALID'){
-      this.childToParrent.emit(event.target.value); 
+      // this.childToParrent.emit(event.target.value); 
       this.labelData=event.target.value;
     }
     else{this.childToParrent.emit('');}
     // this.childToParrent.emit(this.val);
+    this.usersdata.getformGroupData({dataLabel:this.labelDataName, labelData:this.labelData})
+    
   }
 get selectedType(){return this.dropDownComponent.get('selectedType')}
 get inputname(){return this.dropDownComponent.get('inputname')}

@@ -42,15 +42,26 @@ export class FormComponentComponent {
     console.log(event)
   }
 
-  
+  data:any = [];
 
   show(){ //on clicking the submit button this button will be triggered
     // console.log(this.formData);
     this.dataToChild = this.register.value; //sending the values of the forms which contains the data
     //routing to the other component with the data
+    
+    
+    this.usersData.addUser(this.dataToChild).subscribe(res => {
+      console.log("Op");
+      this.data = res;
+
+      console.log("data.id",this.data.firstName,this.data.id);
+    })
     this.router.navigate(['display-component'],{
       state: { dataToChild : this.dataToChild, AdditionalValue : this.childtoParent }
     })
+
+    //service
+    
 }
 // display:boolean=false
 addComponent(){
@@ -58,5 +69,7 @@ addComponent(){
   this.typeArray.push(1)
 }
 typeArray:any=[]
+
+
 
 }

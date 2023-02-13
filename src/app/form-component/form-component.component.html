@@ -80,14 +80,14 @@
     </div>
     </div>
     <!-- Additional INFO -->
-    <div class="section">
+    <!-- <div class="section">
       
       <label for="User Name" >Additional Info:</label>
       <div class="fieldAndAlert">
       <input [(ngModel)]="info" type="text" formControlName="additionalInfo" placeholder="Enter User Name" class="inputField" pattern="^[a-zA-Z0-9]+([._]?[.-]?[a-zA-Z0-9]+)*$"  >
     
     </div>
-    </div>
+    </div> -->
     <!-- Common Component -->
     <app-common (childToParrent)="val($event)"></app-common>
     
@@ -106,7 +106,7 @@
     <!-- 293c3aad85e761a0c077c3f3c3277e1deeb569a4 -->
     <div class="section btns">
       <button type="reset">Reset</button>
-      <button type="submit" [disabled]="!register.valid" >Submit</button>
+      <button type="submit" >Submit</button> <!-- [disabled]="!register.valid" -->
     </div>
     
     </fieldset>
